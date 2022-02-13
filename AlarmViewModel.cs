@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace AlarmApp
 {
-    public class AlarmModel : ObservableObject
+    public class AlarmViewModel : ObservableObject
     {
         private string name = "Alarm 1";
         public string Name
@@ -17,7 +17,7 @@ namespace AlarmApp
         public DateTime Date
         {
             get { return _date; }
-            set { SetProperty(ref _date, value); }
+            set { SetProperty(ref _date, value); RelativeTime = Util.ConvertDateToRelative(Date); }
         }
 
         private uint id;

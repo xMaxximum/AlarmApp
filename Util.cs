@@ -25,7 +25,7 @@ namespace AlarmApp
         public static string ConvertDateToRelative(DateTime time)
         {
             StringBuilder sb = new("");
-            string suffix = " from now";
+            string suffix = "from now";
 
             TimeSpan timeSpan = new(Math.Abs(DateTime.Now.Subtract(time).Ticks));
             TimeSpan span = new(Math.Abs(TimeSpan.FromTicks(timeSpan.Ticks).Ticks));

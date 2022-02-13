@@ -44,7 +44,13 @@
             Grid.Row="2"
             Grid.Column="2"
             Margin="0,20,0,0"
+            AutoGenerateColumns="False"
             CanUserAddRows="False"
-            ItemsSource="{Binding Path=Alarms}" />
+            ItemsSource="{Binding Path=Alarms}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Name}" Header="Name" />
+                <DataGridTextColumn Binding="{Binding RelativeTime}" Header="Time left" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

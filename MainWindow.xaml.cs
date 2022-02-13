@@ -26,9 +26,23 @@ namespace AlarmApp
 
         private void Timer_Tick(object? sender, EventArgs e)
         {
-            foreach (AlarmModel alarm in viewModel.Alarms)
+            try
             {
-                alarm.Date = alarm.Date.Subtract(TimeSpan.FromSeconds(1));
+                foreach (AlarmViewModel alarm in viewModel.Alarms)
+                {
+                    alarm.Date = alarm.Date.Subtract(TimeSpan.FromSeconds(1));
+
+                    if (alarm.Date.CompareTo(DateTime.Now) == 0 || alarm.Date.CompareTo(DateTime.Now) < 0)
+                    {
+                        viewModel.Alarms.Remove(alarm);
+                        var alarmWindow = new AlarmWindow();
+                        alarmWindow.Show();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
             }
         }
 
