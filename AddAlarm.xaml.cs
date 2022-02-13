@@ -68,7 +68,7 @@ namespace AlarmApp
                     {
                         DateTime time = Util.ConvertStringToTime(TimePicker_TextBox.Text, timeType);
 
-                        var alarm = new AlarmModel()
+                        var alarm = new AlarmViewModel()
                         {
                             Name = NameTextBox.Text,
                             Date = time

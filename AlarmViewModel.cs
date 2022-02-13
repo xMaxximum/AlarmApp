@@ -1,10 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System;
-using System.Collections.Generic;
 
 namespace AlarmApp
 {
-    public class AlarmModel : ObservableObject
+    public class AlarmViewModel : ObservableObject
     {
         private string name = "Alarm 1";
         public string Name
@@ -37,7 +36,7 @@ namespace AlarmApp
         public void Update(DateTime date)
         {
             Date = date;
-            RelativeTime = Util.ConvertDateToRelative(_date);
+            RelativeTime = Util.ConvertDateToRelative(date);
         }
     }
 

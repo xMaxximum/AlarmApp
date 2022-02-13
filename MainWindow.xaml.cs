@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Threading;
+﻿using System.Windows;
 
 namespace AlarmApp
 {
@@ -14,22 +12,16 @@ namespace AlarmApp
         public MainWindow()
         {
             viewModel = new MainWindowViewModel();
-
-            InitializeComponent();
             DataContext = viewModel;
 
-            DispatcherTimer timer = new();
-            timer.Tick += Timer_Tick;
-            timer.Interval = new TimeSpan(0, 0, 1);
-            timer.Start();
+            InitializeComponent();
+
+            Closing += OnClosing;
         }
 
-        private void Timer_Tick(object? sender, EventArgs e)
+        private void OnClosing(object? sender, System.ComponentModel.CancelEventArgs e)
         {
-            foreach (AlarmModel alarm in viewModel.Alarms)
-            {
-                alarm.Date = alarm.Date.Subtract(TimeSpan.FromSeconds(1));
-            }
+            viewModel.Dispose();
         }
 
         private void AddAlarmButton_Click(object sender, RoutedEventArgs e)
