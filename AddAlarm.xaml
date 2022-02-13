@@ -1,0 +1,103 @@
+﻿<Window
+    x:Class="AlarmApp.AddAlarm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:adonisControls="clr-namespace:AdonisUI.Controls;assembly=AdonisUI"
+    xmlns:adonisExtensions="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
+    xmlns:adonisUi="clr-namespace:AdonisUI;assembly=AdonisUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:AlarmApp"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+    xmlns:t="http://schemas.xceed.com/wpf/xaml/toolkit"
+    Title="Add Alarm"
+    Width="260"
+    Height="240"
+    ResizeMode="CanMinimize"
+    WindowStartupLocation="CenterOwner"
+    mc:Ignorable="d">
+    <Window.Style>
+        <Style BasedOn="{StaticResource {x:Type Window}}" TargetType="{x:Type Window}" />
+    </Window.Style>
+    <Grid x:Name="Grid" MouseDown="Grid_MouseDown">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="230" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="Add a new Alarm" />
+        <TextBox
+            x:Name="NameTextBox"
+            Grid.Row="2"
+            Grid.Column="1"
+            Width="150"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            adonisExtensions:WatermarkExtension.Watermark="Set Alarm name..." />
+
+        <TextBox
+            x:Name="TimePicker_TextBox"
+            Grid.Row="3"
+            Grid.Column="1"
+            Width="150"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            adonisExtensions:WatermarkExtension.Watermark="Set Alam Duration..." />
+        <adonisControls:SplitButton
+            x:Name="TimeSplitButton"
+            Grid.Row="3"
+            Grid.Column="1"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Content="Time">
+            <adonisControls:SplitButton.SplitMenu>
+                <ContextMenu MinWidth="{Binding PlacementTarget.ActualWidth, RelativeSource={RelativeSource Self}}">
+                    <MenuItem
+                        x:Name="Seconds_MenuItem"
+                        Click="Seconds_MenuItem_Click"
+                        Header="Seconds" />
+                    <MenuItem
+                        x:Name="Minutes_MenuItem"
+                        Click="Minutes_MenuItem_Click"
+                        Header="Minutes" />
+                    <MenuItem
+                        x:Name="Hours_MenuItem"
+                        Click="Hours_MenuItem_Click"
+                        Header="Hours" />
+                    <MenuItem
+                        x:Name="Days_MenuItem"
+                        Click="Days_MenuItem_Click"
+                        Header="Days" />
+                </ContextMenu>
+            </adonisControls:SplitButton.SplitMenu>
+        </adonisControls:SplitButton>
+        <Button
+            x:Name="Set_Button"
+            Grid.Row="4"
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Click="Set_Button_Click"
+            Content="Set" />
+        <Button
+            x:Name="Cancel_Button"
+            Grid.Row="4"
+            Grid.Column="1"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Click="Cancel_Button_Click"
+            Content="Cancel" />
+    </Grid>
+</Window>
