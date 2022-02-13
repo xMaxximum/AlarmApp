@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace AlarmApp
 {
@@ -20,17 +11,18 @@ namespace AlarmApp
     public partial class AddAlarm : Window
     {
         public Times timeType;
+        private readonly MainWindowViewModel mainWindowViewModel;
 
-        public AddAlarm()
+        public AddAlarm(MainWindowViewModel mainWindowViewModel)
         {
             InitializeComponent();
+            this.mainWindowViewModel = mainWindowViewModel;
         }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Keyboard.ClearFocus();
         }
-
 
         private void Seconds_MenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -75,8 +67,8 @@ namespace AlarmApp
                     if (Util.AreDigitsOnly(TimePicker_TextBox.Text))
                     {
                         DateTime time = Util.ConvertStringToTime(TimePicker_TextBox.Text, timeType);
-                        var viewModel = new MainWindowViewModel();
-                        viewModel.AddAlarm(new AlarmModel() { Name = NameTextBox.Text, Date = time });
+
+                        mainWindowViewModel.AddAlarm(new AlarmModel() { Name = NameTextBox.Text, Date = time });
                         Close();
                     }
                     else
