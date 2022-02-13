@@ -6,25 +6,39 @@ namespace AlarmApp
 {
     public class AlarmModel : ObservableObject
     {
+        private string name = "Alarm 1";
+        public string Name
+        {
+            get => name;
+            set => SetProperty(ref name, value);
+        }
+
         private DateTime _date;
-        private string? _relativeTime;
-        public string Name { get; set; } = "Alarm 1";
         public DateTime Date
         {
-            get
-            {
-                return _date;
-            }
-            set
-            {
-                _date = value;
-                _relativeTime = Util.ConvertDateToRelative(_date);
-                RelativeTime = _relativeTime;
-                SetProperty(ref _relativeTime, Util.ConvertDateToRelative(_date));
-            }
+            get { return _date; }
+            set { SetProperty(ref _date, value); }
         }
-        public uint Id { get; set; }
-        public string RelativeTime { get; set; } = string.Empty;
+
+        private uint id;
+        public uint Id
+        {
+            get => id;
+            set => SetProperty(ref id, value);
+        }
+
+        private string relativeTime = string.Empty;
+        public string RelativeTime
+        {
+            get => relativeTime;
+            set => SetProperty(ref relativeTime, value);
+        }
+
+        public void Update(DateTime date)
+        {
+            Date = date;
+            RelativeTime = Util.ConvertDateToRelative(_date);
+        }
     }
 
     /*
